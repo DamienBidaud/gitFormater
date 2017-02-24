@@ -10,17 +10,20 @@ class Add {
   }
 
   execute(all, files) {
-    const actions = [];
-    actions[true] = this.addAll;
-    actions[false] = this.addOneByOne;
-    if(files.length === 0) {
-      console.log('Sorry nothing to commit');
-    }else {
-      this.files = actions[all](files, 0);
-      this.repo.add(this.files, (err)=>{
-        if(err) console.error(err);
-      });
-    }
+    return new Promise((resolve, reject)=> {
+      const actions = [];
+      actions[true] = this.addAll;
+      actions[false] = this.addOneByOne;
+      if(files.length === 0) {
+        console.log('Sorry nothing to commit');
+      }else {
+        this.files = actions[all](files, 0);
+        this.repo.add(this.files, (err)=>{
+          reject(err);
+          resolve(true);
+        });
+      }
+    });
   }
 
   addAll(files) {

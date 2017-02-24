@@ -34,15 +34,15 @@ formater
 formater
   .command('push')
   .description('push files')
-  .action(function (options) {
+  .action(function () {
     command.push();
   });
 
 formater
   .command('send [all]')
   .description('add commit and push files')
-  .action(function () {
-    command.send();
+  .action(function (options) {
+    command.send(!!(options));
   });
 
 formater.parse(process.argv);

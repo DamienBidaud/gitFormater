@@ -37,7 +37,7 @@ class Command {
   add(all) {
     this.showCommand.execute()
       .then((data) => {
-        this.addCommand.execute(all, data);
+        this.addCommand.execute(all, data).catch((err)=>{console.error(err)});
       })
       .catch((err) => {
         console.log(err);
@@ -45,15 +45,29 @@ class Command {
   }
 
   commit() {
-    this.commitCommand.execute();
+    this.commitCommand.execute().catch((err)=>{console.error(err)});
   }
 
   push() {
     this.pushCommand.execute();
   }
 
-  send() {
-    this.sendCommand.execute();
+  send(all) {
+    this.showCommand.execute()
+      .then((data) => {
+        this.addCommand.execute(all, data)
+          .then(()=>{
+            this.commitCommand.execute().then(()=>{
+              this.pushCommand.execute();
+            }).catch((err)=>{console.error(err)});
+          })
+          .catch((err)=> {
+            console.error(err)
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 
