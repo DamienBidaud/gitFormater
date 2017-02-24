@@ -2,7 +2,7 @@
  * Created by bidaudd on 24/02/2017.
  */
 const git = require('gift');
-const valid = require('chalk').green.bold;
+const output = require('../../utility/style');
 
 class Push {
   constructor() {
@@ -14,7 +14,7 @@ class Push {
       if(err) console.error(err);
       this.repo.remote_push(`origin ${head.name}`, (err)=>{
         if(err) console.error(err);
-        console.log(valid('Push to origin'));
+        output.valid('Push to origin');
       })
     })
   }

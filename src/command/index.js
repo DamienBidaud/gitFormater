@@ -5,10 +5,7 @@ const Show = require('./show');
 const Add = require('./add');
 const Commit = require('./commit');
 const Push = require('./push');
-const valid = require('chalk').green.bold;
-const green = require('chalk').green;
-const red = require('chalk').red;
-const title = require('chalk').bold.underline;
+const output = require('../utility/style');
 
 class Command {
   constructor(){
@@ -24,9 +21,9 @@ class Command {
       this.showCommand.execute()
         .then((data) => {
           this.files = data;
-          this.displayFiles('Files Added', this.files['staged'], green);
+          this.displayFiles('Files Added', this.files['staged'], output.green);
           console.log('');
-          this.displayFiles('Files non staged', this.files['waiting'], red);
+          this.displayFiles('Files non staged', this.files['waiting'], output.red);
           resolve(true);
         })
         .catch((err) => {
@@ -38,9 +35,9 @@ class Command {
 
   displayFiles(titleLog, files, style) {
     if(files.length > 0) {
-      console.log(title(titleLog));
+      output.title(titleLog);
       for (let i = 0; i < files.length; i++) {
-        console.log('   ' + style(files[i]));
+        style('   ' + files[i]);
       }
     }
   }
@@ -58,7 +55,7 @@ class Command {
   commit() {
     this.commitCommand.execute()
       .then(() => {
-        console.log(valid('Files commit'));
+        output.valid('Files commit');
       })
       .catch((err)=>{console.error(err)});
   }
@@ -72,10 +69,10 @@ class Command {
       .then((data) => {
         this.addCommand.execute(all, data)
           .then(()=>{
-            console.log(valid('Files added to the commit'));
+            output.valid('Files added to the commit');
             this.commitCommand.execute()
               .then(()=>{
-                console.log(valid('Files commit'));
+                output.valid('Files commit');
                 this.pushCommand.execute();
               })
               .catch((err)=>{console.error(err)});

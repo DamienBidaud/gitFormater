@@ -3,8 +3,7 @@
  */
 const git = require('gift');
 const readLineSync = require('readline-sync');
-const blue = require('chalk').cyan.bold;
-
+const output = require('../../utility/style');
 
 class Commit {
   constructor() {
@@ -17,7 +16,7 @@ class Commit {
       this.repo.branch((err, head)=>{
         if(err) reject(err);
         message += head.name + ': ';
-        message += readLineSync.question(blue('What is the commit message ? '));
+        message += readLineSync.question(output.question('What is the commit message ? '));
         this.repo.commit(message, (err)=>{
           if(err) reject(err);
           resolve(true);
