@@ -12,12 +12,17 @@ class Show {
   execute() {
     return new Promise((resolve, reject) => {
       let files = [];
+      files['staged'] = [];
+      files['waiting'] = [];
       this.repo.status((err, status) => {
         if(err) {
           reject(err);
         }
         Object.keys(status.files).map((k) => {
-          files.push(k);
+          if (status.files[k].staged)
+            files['staged'].push(k);
+          else
+            files['waiting'].push(k);
         });
         resolve(files);
       });

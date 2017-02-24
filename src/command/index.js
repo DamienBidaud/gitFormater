@@ -5,7 +5,9 @@ const Show = require('./show');
 const Add = require('./add');
 const Commit = require('./commit');
 const Push = require('./push');
-const Send = require('./send');
+const valid = require('chalk').green;
+const error = require('chalk').red;
+const title = require('chalk').bold.underline;
 
 class Command {
   constructor(){
@@ -13,7 +15,6 @@ class Command {
     this.addCommand = new Add();
     this.commitCommand = new Commit();
     this.pushCommand = new Push();
-    this.sendCommand = new Send();
     this.files = []
   }
 
@@ -22,9 +23,9 @@ class Command {
       this.showCommand.execute()
         .then((data) => {
           this.files = data;
-          for(let i = 0; i < this.files.length; i++) {
-            console.log(this.files[i]);
-          }
+          this.displayFiles('Files Added', this.files['staged'], valid);
+          console.log('');
+          this.displayFiles('Files non staged', this.files['waiting'], error);
           resolve(true);
         })
         .catch((err) => {
@@ -32,6 +33,15 @@ class Command {
           reject(err);
         });
     });
+  }
+
+  displayFiles(titleLog, files, style) {
+    if(files.length > 0) {
+      console.log(title(titleLog));
+      for (let i = 0; i < files.length; i++) {
+        console.log('   ' + style(files[i]));
+      }
+    }
   }
 
   add(all) {
@@ -47,7 +57,7 @@ class Command {
   commit() {
     this.commitCommand.execute()
       .then(() => {
-        console.log('File commit');
+        console.log(valid('File commit'));
       })
       .catch((err)=>{console.error(err)});
   }
@@ -61,10 +71,10 @@ class Command {
       .then((data) => {
         this.addCommand.execute(all, data)
           .then(()=>{
-            console.log('Files added to the commit');
+            console.log(valid('Files added to the commit'));
             this.commitCommand.execute()
               .then(()=>{
-                console.log('File commit');
+                console.log(valid('File commit'));
                 this.pushCommand.execute();
               })
               .catch((err)=>{console.error(err)});

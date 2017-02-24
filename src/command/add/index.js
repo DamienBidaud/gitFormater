@@ -16,11 +16,11 @@ class Add {
       const actions = [];
       actions[true] = this.addAll;
       actions[false] = this.addOneByOne;
-      if(files.length === 0) {
+      if(files['waiting'].length === 0) {
         console.log('Sorry nothing to commit');
         resolve(true);
       }else {
-        this.files = actions[all](files, 0);
+        this.files = actions[all](files['waiting']);
         this.repo.add(this.files, (err)=>{
           if(err) reject(err);
           resolve(true);
