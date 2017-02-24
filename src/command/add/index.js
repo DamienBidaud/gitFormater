@@ -20,8 +20,8 @@ class Add {
       }else {
         this.files = actions[all](files, 0);
         this.repo.add(this.files, (err)=>{
+          if(err) reject(err);
           resolve(true);
-          reject(err);
         });
       }
     });

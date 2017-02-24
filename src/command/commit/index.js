@@ -19,7 +19,7 @@ class Commit {
         prompt.get('message', (err, input)=>{
           message += input.message;
           this.repo.commit(message, (err)=>{
-            reject(err);
+            if(err) reject(err);
             resolve(true);
           })
         })
