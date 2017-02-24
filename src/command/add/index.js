@@ -3,6 +3,8 @@
  */
 const git = require('gift');
 const prompt = require('prompt');
+const readlineSync = require('readline-sync');
+
 class Add {
   constructor() {
     this.repo = git('.');
@@ -31,19 +33,18 @@ class Add {
     return (files);
   }
 
-  addOneByOne(files, i) {
-    const self = this;
-    console.log(`Do you want to add ${files[i]}?`);
-    prompt.get(['answer'], (err, input) => {
-      let tmps = [];
-      if(input.answer === 'o') {
 
 
-        if (i+1 < files.length)
-          tmps = this.addOneByOne(files, i++);
-        return tmps.push(files[i]);
-      }
-    });
+  addOneByOne(files) {
+    let i = 0;
+    let answer;
+    let filesCommit = [];
+    while (i < files.length) {
+      answer = readlineSync.question(`Do you want to add ${files[i]}? (y/n)`);
+      if(answer === 'y') filesCommit.push(files[i]);
+      i++;
+    }
+    return filesCommit;
   }
 }
 

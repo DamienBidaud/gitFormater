@@ -12,7 +12,8 @@
   "dependencies": {
     "commander": "^2.9.0",
     "gift": "^0.10.0",
-    "prompt": "^1.0.0"
+    "prompt": "^1.0.0",
+    "readline-sync": "^1.4.6"
   },
   "bin": {
     "formater": "formater.js"
