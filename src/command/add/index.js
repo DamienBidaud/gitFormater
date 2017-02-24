@@ -2,8 +2,8 @@
  * Created by bidaudd on 24/02/2017.
  */
 const git = require('gift');
-const prompt = require('prompt');
-const readlineSync = require('readline-sync');
+const readLineSync = require('readline-sync');
+const blue = require('chalk').blue.bold;
 
 class Add {
   constructor() {
@@ -40,7 +40,7 @@ class Add {
     let answer;
     let filesCommit = [];
     while (i < files.length) {
-      answer = readlineSync.question(`Do you want to add ${files[i]}? (y/n)`);
+      answer = readLineSync.question(blue(`Do you want to add ${files[i]}? (y/n)`));
       if(answer === 'y') filesCommit.push(files[i]);
       i++;
     }

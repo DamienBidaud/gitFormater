@@ -2,7 +2,9 @@
  * Created by bidaudd on 24/02/2017.
  */
 const git = require('gift');
-const prompt = require('prompt');
+const readLineSync = require('readline-sync');
+const blue = require('chalk').blue.bold;
+
 
 class Commit {
   constructor() {
@@ -15,12 +17,10 @@ class Commit {
       this.repo.branch((err, head)=>{
         if(err) reject(err);
         message += head.name + ': ';
-        prompt.get('message', (err, input)=>{
-          message += input.message;
-          this.repo.commit(message, (err)=>{
-            if(err) reject(err);
-            resolve(true);
-          })
+        message += readLineSync.question(blue('What is the commit message ? '));
+        this.repo.commit(message, (err)=>{
+          if(err) reject(err);
+          resolve(true);
         })
       })
     });
