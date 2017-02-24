@@ -1,0 +1,20 @@
+{
+  "name": "gitFormater",
+  "version": "1.0.0",
+  "description": "a node module tool for format git commit",
+  "main": "formater.js",
+  "repository": {
+    "url": "https://github.com/DamienBidaud/gitFormater.git",
+    "type": "git"
+  },
+  "author": "Damien Bidaud <dbdartian@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "gift": "^0.10.0",
+    "prompt": "^1.0.0"
+  },
+  "bin": {
+    "formater": "formater.js"
+  }
+}
