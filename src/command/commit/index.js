@@ -13,7 +13,7 @@ class Commit {
     return new Promise((resolve, reject)=> {
       let message = "";
       this.repo.branch((err, head)=>{
-        reject(err);
+        if(err) reject(err);
         console.log(head.name);
         message += head.name + ': ';
         prompt.get('message', (err, input)=>{
