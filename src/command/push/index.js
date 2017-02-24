@@ -13,6 +13,7 @@ class Push {
       if(err) console.error(err);
       this.repo.remote_push(`origin ${head.name}`, (err)=>{
         if(err) console.error(err);
+        console.log('push to origin');
       })
     })
   }

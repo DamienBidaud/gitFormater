@@ -14,7 +14,6 @@ class Commit {
       let message = "";
       this.repo.branch((err, head)=>{
         if(err) reject(err);
-        console.log(head.name);
         message += head.name + ': ';
         prompt.get('message', (err, input)=>{
           message += input.message;

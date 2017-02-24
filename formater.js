@@ -7,7 +7,7 @@ const Command = require('./src/command');
 const command = new Command();
 
 formater
-  .version('0.0.1')
+  .version('1.0.0')
   .usage('<command>');
 
 formater
