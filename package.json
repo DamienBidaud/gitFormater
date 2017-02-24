@@ -1,5 +1,5 @@
 {
-  "name": "gitFormater",
+  "name": "git-formater",
   "version": "1.0.0",
   "description": "a node module tool for format git commit",
   "main": "formater.js",
