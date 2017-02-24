@@ -45,7 +45,11 @@ class Command {
   }
 
   commit() {
-    this.commitCommand.execute().catch((err)=>{console.error(err)});
+    this.commitCommand.execute()
+      .then(() => {
+        console.log('File commit');
+      })
+      .catch((err)=>{console.error(err)});
   }
 
   push() {
@@ -56,8 +60,10 @@ class Command {
     this.showCommand.execute()
       .then((data) => {
         this.addCommand.execute(all, data)
-          .then(()=>{
-            this.commitCommand.execute().then(()=>{
+          .then((data)=>{
+            console.log('Files added to the commit');
+            this.commitCommand.execute().then((data)=>{
+              console.log('File commit');
               this.pushCommand.execute();
             }).catch((err)=>{console.error(err)});
           })
