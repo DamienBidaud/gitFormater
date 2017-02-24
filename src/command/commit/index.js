@@ -20,7 +20,6 @@ class Commit {
           message += input.message;
           this.repo.commit(message, (err)=>{
             if(err) reject(err);
-            console.log('commited');
             resolve(true);
           })
         })

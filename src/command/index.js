@@ -60,12 +60,14 @@ class Command {
     this.showCommand.execute()
       .then((data) => {
         this.addCommand.execute(all, data)
-          .then((data)=>{
+          .then(()=>{
             console.log('Files added to the commit');
-            this.commitCommand.execute().then((data)=>{
-              console.log('File commit');
-              this.pushCommand.execute();
-            }).catch((err)=>{console.error(err)});
+            this.commitCommand.execute()
+              .then(()=>{
+                console.log('File commit');
+                this.pushCommand.execute();
+              })
+              .catch((err)=>{console.error(err)});
           })
           .catch((err)=> {
             console.error(err)
