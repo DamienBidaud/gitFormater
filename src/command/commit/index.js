@@ -3,7 +3,7 @@
  */
 const git = require('gift');
 const readLineSync = require('readline-sync');
-const blue = require('chalk').blue.bold;
+const blue = require('chalk').cyan.bold;
 
 
 class Commit {

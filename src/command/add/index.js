@@ -3,7 +3,7 @@
  */
 const git = require('gift');
 const readLineSync = require('readline-sync');
-const blue = require('chalk').blue.bold;
+const blue = require('chalk').cyan.bold;
 
 class Add {
   constructor() {
@@ -40,7 +40,7 @@ class Add {
     let answer;
     let filesCommit = [];
     while (i < files.length) {
-      answer = readLineSync.question(blue(`Do you want to add ${files[i]}? (y/n)`));
+      answer = readLineSync.question(blue(`Do you want to add ${files[i]}? (y/n) `));
       if(answer === 'y') filesCommit.push(files[i]);
       i++;
     }
