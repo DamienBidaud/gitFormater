@@ -1,6 +1,6 @@
 {
   "name": "git-formater",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a node module tool for format git commit",
   "main": "formater.js",
   "repository": {
