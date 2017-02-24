@@ -5,8 +5,9 @@ const Show = require('./show');
 const Add = require('./add');
 const Commit = require('./commit');
 const Push = require('./push');
-const valid = require('chalk').green;
-const error = require('chalk').red;
+const valid = require('chalk').green.bold;
+const green = require('chalk').green;
+const red = require('chalk').red;
 const title = require('chalk').bold.underline;
 
 class Command {
@@ -23,9 +24,9 @@ class Command {
       this.showCommand.execute()
         .then((data) => {
           this.files = data;
-          this.displayFiles('Files Added', this.files['staged'], valid);
+          this.displayFiles('Files Added', this.files['staged'], green);
           console.log('');
-          this.displayFiles('Files non staged', this.files['waiting'], error);
+          this.displayFiles('Files non staged', this.files['waiting'], red);
           resolve(true);
         })
         .catch((err) => {
