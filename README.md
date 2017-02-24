@@ -1,15 +1,13 @@
 
 
 # Git Formater
-**(Beta version)**
-
 
 
 Formater is a npm module who can add all your file uncommit
 to your next commit and format your commit message with this format:
  ``<name-of-branch>: <your message>``
 
- ## Installation
+## Installation
  ``npm install -g git-formater`` 
   
   
@@ -32,8 +30,4 @@ to your next commit and format your commit message with this format:
          -h, --help     output usage information
          -V, --version  output the version number
          
- Road map:
- 
- For the moment the add and send commands works only with the all option
- I have to update the function for available the chose of the file the user want to commit
  
