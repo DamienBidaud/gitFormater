@@ -58,7 +58,7 @@ class Command {
   commit() {
     this.commitCommand.execute()
       .then(() => {
-        console.log(valid('File commit'));
+        console.log(valid('Files commit'));
       })
       .catch((err)=>{console.error(err)});
   }
@@ -75,7 +75,7 @@ class Command {
             console.log(valid('Files added to the commit'));
             this.commitCommand.execute()
               .then(()=>{
-                console.log(valid('File commit'));
+                console.log(valid('Files commit'));
                 this.pushCommand.execute();
               })
               .catch((err)=>{console.error(err)});
